@@ -11,6 +11,10 @@ WORKDIR /app
 # Копируем Gemfile и Gemfile.lock для установки зависимостей
 COPY Gemfile Gemfile.lock ./
 
+# Устанавливаем зависимости для PostgreSQL
+RUN apt-get update -qq && apt-get install -y \
+  build-essential libpq-dev nodejs sqlite3 tzdata
+
 # Устанавливаем зависимости
 RUN bundle install
 
